@@ -1,0 +1,15 @@
+.TodoItem {}
+
+.group {
+    font-weight: 900;
+}
+
+.desc {
+    font-weight: 200;
+    color: purple;
+    text-align: center;
+    padding: 5px;
+    /* max-height: 20px;
+    overflow: scroll; */
+    min-height: 60px;
+}
