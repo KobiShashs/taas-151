@@ -5,3 +5,11 @@ export interface TaskModel {
     group: string;
     when: Date;
 }
+
+export interface TaskPayloadModel {
+    title: string;
+    description: string;
+    group: string;
+    when: Date;
+}
+

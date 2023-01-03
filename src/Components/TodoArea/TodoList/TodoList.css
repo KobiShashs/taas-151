@@ -1,4 +1,22 @@
 .TodoList {
     text-align: center;
-    
+
+}
+
+.TodoList .addButton {
+    width: 200px;
+    /* height: 25px; */
+    border-radius: 25px;
+    background-color: gold;
+    font-size: 22px;
+    border: outset 2px;
+}
+
+.TodoList .addButton:hover {
+    width: 200px;
+    /* height: 25px; */
+    border-radius: 25px;
+    background-color: rgb(167, 143, 11);
+    font-size: 22px;
+    border: inset 2px;
 }

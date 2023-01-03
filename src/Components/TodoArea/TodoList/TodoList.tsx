@@ -1,31 +1,33 @@
 import { useEffect, useState } from "react";
 import "./TodoList.css";
-import axios from "axios";
 import { TaskModel } from "../../../Models/Task";
 import notify from "../../../Services/NotificationService";
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import TodoItem from "../TodoItem/TodoItem";
-import global from "../../../Services/ConstantService";
+import webApi from "../../../Services/WebApi";
+import { useNavigate } from "react-router-dom";
 
 
 function TodoList(): JSX.Element {
 
-    // const url = "https://raw.githubusercontent.com/KobiShashs/TODO-JSON/main/tasks";
+    const navigate = useNavigate();
     const [tasks, setTasks] = useState<TaskModel[]>([]);
     useEffect(() => {
-        axios.get<TaskModel[]>(global.urls.tasks)
+        // axios.get<TaskModel[]>(global.urls.tasks)
+        webApi.getAllTasks()
             .then(res => {
                 console.log(res.data);
                 setTasks(res.data);
                 notify.success('Woho I got my element from server side!!!')
             })
-            .catch(err => notify.error('Opps I did it again'));
+            .catch(err => notify.error(err));
     }, []);
 
     return (
-        <div className="TodoList">
+        <div className="TodoList col">
 
             <h1>Todo list</h1>
+            <button className="addButton" onClick={() => navigate("add")}>Add new Task</button>
 
             {
                 tasks?.length > 0

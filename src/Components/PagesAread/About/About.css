@@ -1,3 +1,13 @@
 .About {
-	
+    padding: 25px;
+}
+
+.About p {
+    font-size: 22px;
+}
+
+.About p::first-letter {
+    font-size: 56px;
+    color: green;
+    /* font-weight: 900; */
 }

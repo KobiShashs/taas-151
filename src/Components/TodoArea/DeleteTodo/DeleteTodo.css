@@ -1,0 +1,35 @@
+.DeleteTodo {
+    height: 100%;
+    /* background-color: #; */
+    font-weight: 600;
+    font-size: large;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.DeleteTodo .wrapper {
+    margin-top: 50px;
+    background-color: #4197dd;
+    padding: 10px;
+
+}
+
+.DeleteTodo button {
+    width: 150px;
+    height: 30px;
+
+}
+
+.DeleteTodo .cancel {
+    background-color: #8fa1af;
+}
+
+.DeleteTodo .yes {
+    background-color: #be2121;
+}
+
+.DeleteTodo .gap {
+    gap: 10px;
+}

@@ -12,6 +12,9 @@ function Menu(): JSX.Element {
             <Link to="/todos">Todos</Link>
             <Link to="/about">About</Link>
             <Link to="/donate">Donate</Link>
+            <Link to="/todos/add">Add Task</Link>
+            {/* <Link to="/todos/delete/12345">Delete Task</Link>
+            <Link to="/todos/edit/12345">Edit Task</Link> */}
         </div>
     );
 }

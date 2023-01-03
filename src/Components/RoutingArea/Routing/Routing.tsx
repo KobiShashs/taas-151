@@ -6,6 +6,9 @@ import About from "../../PagesAread/About/About";
 import Donate from "../../PagesAread/Donate/Donate";
 import Page404 from "../../PagesAread/Page404/Page404";
 import TodoList from "../../TodoArea/TodoList/TodoList";
+import AddTodo from "../../TodoArea/AddTodo/AddTodo";
+import DeleteTodo from "../../TodoArea/DeleteTodo/DeleteTodo";
+import EditTodo from "../../TodoArea/EditTodo/EditTodo";
 
 function Routing(): JSX.Element {
     return (
@@ -17,7 +20,10 @@ function Routing(): JSX.Element {
                 <Route path="/home" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/todos" element={<TodoList />} />
-                <Route path="/donate" element={<Donate />} />
+                <Route path="/todos/add" element={<AddTodo />} />
+                <Route path="/todos/delete/:id/" element={<DeleteTodo />} />
+                <Route path="/todos/edit/:id" element={<EditTodo />} />
+                <Route path="/donate" element={<Donate bank={12} branch={789} account={123456} owner={"TaaS Technology LTD"} />} />
                 <Route path="*" element={<Page404 />} />
             </Routes>
         </div>
