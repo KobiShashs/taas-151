@@ -8,6 +8,8 @@ import global from "../../../Services/ConstantService";
 import { useNavigate } from "react-router-dom";
 import notify from "../../../Services/NotificationService";
 import webApi from "../../../Services/WebApi";
+import store from "../../../Redux/Store";
+import { addedTaskAction } from "../../../Redux/TasksAppState";
 function AddTodo(): JSX.Element {
 
     const navigate = useNavigate();
@@ -37,6 +39,7 @@ function AddTodo(): JSX.Element {
         await webApi.addTask(task)
             .then(res => {
                 notify.success('Woho task added successfully');
+                store.dispatch(addedTaskAction(res.data));
                 navigate('/todos');
             })
             .catch(err => {
@@ -48,6 +51,7 @@ function AddTodo(): JSX.Element {
         <div className="AddTodo">
             <h1>Add Task</h1>
             <form onSubmit={handleSubmit(postTask)}>
+
                 {(errors.title) ? <span>{errors.title?.message}</span> : <label htmlFor="title">Title</label>}
                 <input {...register("title")} id="title" name="title" type="text" placeholder="Title..." />
                 {(errors.description) ? <span>{errors.description?.message}</span> : <label htmlFor="description">Description</label>}

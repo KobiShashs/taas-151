@@ -9,6 +9,8 @@ import TodoList from "../../TodoArea/TodoList/TodoList";
 import AddTodo from "../../TodoArea/AddTodo/AddTodo";
 import DeleteTodo from "../../TodoArea/DeleteTodo/DeleteTodo";
 import EditTodo from "../../TodoArea/EditTodo/EditTodo";
+import Register from "../../AuthArea/Register/Register";
+import Login from "../../AuthArea/Login/Login";
 
 function Routing(): JSX.Element {
     return (
@@ -19,6 +21,8 @@ function Routing(): JSX.Element {
                 <Route index element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/todos" element={<TodoList />} />
                 <Route path="/todos/add" element={<AddTodo />} />
                 <Route path="/todos/delete/:id/" element={<DeleteTodo />} />

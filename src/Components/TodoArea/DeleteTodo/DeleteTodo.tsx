@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./DeleteTodo.css";
 import notify from "../../../Services/NotificationService";
 import webApi from "../../../Services/WebApi";
+import store from "../../../Redux/Store";
+import { deletedTaskAction } from "../../../Redux/TasksAppState";
 
 function DeleteTodo(): JSX.Element {
     const params = useParams();
@@ -17,6 +19,7 @@ function DeleteTodo(): JSX.Element {
         await webApi.deleteTask(id)
             .then(res => {
                 notify.success('Woho deleted successfully');
+                store.dispatch(deletedTaskAction(id));
                 navigate("/todos");
             })
             .catch(err => {

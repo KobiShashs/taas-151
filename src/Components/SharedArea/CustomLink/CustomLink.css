@@ -1,0 +1,15 @@
+.CustomLink {
+    color: white;
+    /* margin-bottom: 15px; */
+    font-size: 22px;
+    text-decoration: none;
+}
+
+
+.CustomLink .active {
+    color: royalblue;
+    border-bottom: 3px solid royalblue;
+    font-weight: 700;
+    font-size: 26px;
+    text-decoration: dashed;
+}

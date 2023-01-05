@@ -1,9 +1,11 @@
+import TotalTodos from "../../TodoArea/TotalTodos/TotalTodos";
 import "./Footer.css";
 
 function Footer(): JSX.Element {
     return (
-        <div className="Footer row">
-            All rihgts reserves to John Bryce &copy;
+        <div className="Footer row ">
+            <p>All rights reserves to John Bryce &copy;</p>
+            <TotalTodos/>
         </div>
     );
 }

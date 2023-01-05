@@ -25,6 +25,10 @@ class WebApi {
         return axios.put<TaskModel>(this.baseUrl + "/" + id, task)
     }
 
+    public countTasks(): Promise<AxiosResponse<number>>{
+        return axios.get<number>(this.baseUrl + "/" + "count");
+    }
+
 }
 
 const webApi = new WebApi();

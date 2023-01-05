@@ -6,21 +6,29 @@ import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import TodoItem from "../TodoItem/TodoItem";
 import webApi from "../../../Services/WebApi";
 import { useNavigate } from "react-router-dom";
+import store from "../../../Redux/Store";
+import { gotAllTasksAction } from "../../../Redux/TasksAppState";
 
 
 function TodoList(): JSX.Element {
 
     const navigate = useNavigate();
-    const [tasks, setTasks] = useState<TaskModel[]>([]);
+    const [tasks, setTasks] = useState<TaskModel[]>(store.getState().tasksReducer.tasks);
     useEffect(() => {
-        // axios.get<TaskModel[]>(global.urls.tasks)
-        webApi.getAllTasks()
-            .then(res => {
-                console.log(res.data);
-                setTasks(res.data);
-                notify.success('Woho I got my element from server side!!!')
-            })
-            .catch(err => notify.error(err));
+
+        if (tasks.length === 0) {
+            webApi.getAllTasks()
+                .then(res => {
+                    console.log(res.data);
+                    // Update local state
+                    setTasks(res.data);
+
+                    // Update app state
+                    store.dispatch(gotAllTasksAction(res.data));
+                    notify.success('Woho I got my element from server side!!!')
+                })
+                .catch(err => notify.error(err));
+        }
     }, []);
 
     return (
