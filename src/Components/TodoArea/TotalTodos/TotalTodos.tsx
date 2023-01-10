@@ -12,9 +12,10 @@ function TotalTodos(): JSX.Element {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        webApi.countTasks().then(res=>setTotal(res.data)).catch(err=>notify.error(err));
+        webApi.countTasks().then(res => setTotal(res.data));
+        // .catch (err=> notify.error(err));
 
-    
+
 
         return store.subscribe(() => {
             setTotal(store.getState().tasksReducer.tasks.length); // Will let us notify
@@ -25,7 +26,7 @@ function TotalTodos(): JSX.Element {
 
     return (
         <div className="TotalTodos">
-            <p> Total : {total} </p>
+            {total && <p> Total : {total} </p>}
         </div>
     );
 }

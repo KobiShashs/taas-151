@@ -10,7 +10,8 @@ export enum ActionType {
     GOT_SINGLE_TASK = "GOT_SINGLE_TASK",
     ADDED_TASK = "ADDED_TASK",
     UPDATED_TASK = "UPDATED_TASK",
-    DELETED_TASK = "DELETED_TASK"
+    DELETED_TASK = "DELETED_TASK",
+    REMOVED_TASKS ="REMOVED_TASKS"
 }
 
 // Step 3 - define what is action in terms of data
@@ -21,25 +22,46 @@ export interface TaskAction {
 
 // Step 4 - creator functions - gets payload regarding the action
 export function gotAllTasksAction(tasks: TaskModel[]): TaskAction {
-    return { type: ActionType.GOT_ALL_TASKS, payload: tasks };
+    return {
+        type: ActionType.GOT_ALL_TASKS,
+        payload: tasks
+    };
 }
 
 export function gotSingleTaskAction(task: TaskModel): TaskAction {
-    return { type: ActionType.GOT_SINGLE_TASK, payload: task };
+    return {
+        type: ActionType.GOT_SINGLE_TASK,
+        payload: task
+    };
 }
 
 export function addedTaskAction(task: TaskModel): TaskAction {
-    return { type: ActionType.ADDED_TASK, payload: task };
+    return {
+        type: ActionType.ADDED_TASK,
+        payload: task
+    };
 }
 
 export function updatedTaskACtion(task: TaskModel): TaskAction {
-    return { type: ActionType.UPDATED_TASK, payload: task };
+    return {
+        type: ActionType.UPDATED_TASK,
+        payload: task
+    };
 }
 
 export function deletedTaskAction(id: number): TaskAction {
-    return { type: ActionType.DELETED_TASK, payload: id }
+    return {
+        type: ActionType.DELETED_TASK,
+        payload: id
+    }
 }
 
+export function removeTasks(): TaskAction {
+    return {
+        type: ActionType.REMOVED_TASKS,
+        payload: {}
+    }
+}
 
 // Step 5 - Reducer function perform the required action
 export function tasksReducer(currentState: TasksAppState = new TasksAppState(),action:TaskAction): TasksAppState{
@@ -64,7 +86,12 @@ export function tasksReducer(currentState: TasksAppState = new TasksAppState(),a
         }
 
         case ActionType.DELETED_TASK: {
-           newState.tasks = newState.tasks.filter(task => task.id !== action.payload);
+            newState.tasks = newState.tasks.filter(task => task.id !== action.payload);
+            break;
+        }
+        case ActionType.REMOVED_TASKS: {
+            newState.tasks = [];
+            break;
         }
 
 

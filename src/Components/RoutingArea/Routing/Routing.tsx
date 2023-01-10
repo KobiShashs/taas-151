@@ -11,6 +11,7 @@ import DeleteTodo from "../../TodoArea/DeleteTodo/DeleteTodo";
 import EditTodo from "../../TodoArea/EditTodo/EditTodo";
 import Register from "../../AuthArea/Register/Register";
 import Login from "../../AuthArea/Login/Login";
+import Logout from "../../AuthArea/Logout/Logout";
 
 function Routing(): JSX.Element {
     return (
@@ -23,6 +24,7 @@ function Routing(): JSX.Element {
                 <Route path="/about" element={<About />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout />} />
                 <Route path="/todos" element={<TodoList />} />
                 <Route path="/todos/add" element={<AddTodo />} />
                 <Route path="/todos/delete/:id/" element={<DeleteTodo />} />

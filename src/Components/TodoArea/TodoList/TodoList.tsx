@@ -7,7 +7,7 @@ import TodoItem from "../TodoItem/TodoItem";
 import webApi from "../../../Services/WebApi";
 import { useNavigate } from "react-router-dom";
 import store from "../../../Redux/Store";
-import { gotAllTasksAction } from "../../../Redux/TasksAppState";
+import { addedTaskAction, gotAllTasksAction } from "../../../Redux/TasksAppState";
 
 
 function TodoList(): JSX.Element {
@@ -24,7 +24,9 @@ function TodoList(): JSX.Element {
                     setTasks(res.data);
 
                     // Update app state
+
                     store.dispatch(gotAllTasksAction(res.data));
+
                     notify.success('Woho I got my element from server side!!!')
                 })
                 .catch(err => notify.error(err));

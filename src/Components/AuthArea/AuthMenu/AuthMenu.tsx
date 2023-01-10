@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
 import "./AuthMenu.css";
 import CustomLink from "../../SharedArea/CustomLink/CustomLink";
+import { useEffect, useState } from "react";
+import { User } from "../../../Models/Auth";
+import store from "../../../Redux/Store";
 
 function AuthMenu(): JSX.Element {
-    const token = "";
-    const email = "";
+    const [user, setUser] = useState<User>(store.getState().userReducer.user);
+
+    useEffect(() => {
+        return store.subscribe(() => setUser(store.getState().userReducer.user));
+    }, []);
     return (
         <div className="AuthMenu row">
-            {(token) ?
-                <>Hello {email}  <CustomLink to="logout">Logout</CustomLink></> :
-                <>Hello guest  <CustomLink to="register">Register </CustomLink>  <CustomLink to="login">Login </CustomLink></>}
+            {(user?.token) ?
+                <>Connected as {user.email}&nbsp;<CustomLink to="logout">Logout</CustomLink></> :
+                <>Hello guest &nbsp;<CustomLink to="register">Register </CustomLink>&nbsp;<CustomLink to="login">Login </CustomLink></>}
         </div>
     );
 }
