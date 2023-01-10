@@ -10,9 +10,20 @@ import notify from "../../../Services/NotificationService";
 import webApi from "../../../Services/WebApi";
 import store from "../../../Redux/Store";
 import { addedTaskAction } from "../../../Redux/TasksAppState";
+import { useEffect } from "react";
 function AddTodo(): JSX.Element {
 
     const navigate = useNavigate();
+    useEffect(() => {
+        const token = store.getState().userReducer.user.token;
+        console.log(token);
+        if (!token) {
+            navigate("/login");
+
+        }
+    }, []);
+
+
 
     const schema = yup.object().shape({
         title:
