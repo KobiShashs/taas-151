@@ -7,8 +7,10 @@ import webApi from "../../../Services/WebApi";
 import notify from "../../../Services/NotificationService";
 import store from "../../../Redux/Store";
 import { loggedIn } from "../../../Redux/UserAppState";
+import { useNavigate } from "react-router-dom";
 function Login(): JSX.Element {
 
+    const navigate = useNavigate();
 
     const schema = yup.object().shape({
         email:
@@ -30,6 +32,7 @@ function Login(): JSX.Element {
             console.log(res.data);
             // Update global State
             store.dispatch(loggedIn(res.data));
+            navigate("/todos");
         }).catch(err => notify.error(err));
     }
     return (

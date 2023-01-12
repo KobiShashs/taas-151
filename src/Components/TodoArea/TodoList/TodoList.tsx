@@ -31,10 +31,10 @@ function TodoList(): JSX.Element {
 
                         store.dispatch(gotAllTasksAction(res.data));
 
-                        notify.success('Woho I got my element from server side!!!')
+                        // notify.success('Woho I got my element from server side!!!')
                     })
                     .catch(err => notify.error(err));
-            
+
         }
     }, []);
 

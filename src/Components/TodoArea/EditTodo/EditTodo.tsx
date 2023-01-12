@@ -16,7 +16,8 @@ function EditTodo(): JSX.Element {
     const params = useParams();
     const id = +(params.id || 0)
 
-    const [obj, setObj] = useState<TaskModel>(store.getState().tasksReducer.tasks.filter(task => task.id === id)[0])
+    const toUpdate = store.getState().tasksReducer.tasks.filter(task => task.id === id)[0]
+    const [obj, setObj] = useState<TaskModel>(toUpdate);
 
     const navigate = useNavigate();
 
@@ -25,7 +26,8 @@ function EditTodo(): JSX.Element {
             yup.string()
                 .required("title is required"),
         description:
-            yup.string().required("description is missing"),
+            yup.string()
+                .required("description is missing"),
         group:
             yup.string()
                 .required("group is required"),
@@ -64,9 +66,7 @@ function EditTodo(): JSX.Element {
     const { register, handleSubmit, control, formState: { errors, isDirty, isValid } }
         = useForm<TaskModel>({ defaultValues: defaultValuesObj, mode: "all", resolver: yupResolver(schema) });
 
-    const { dirtyFields } = useFormState({
-        control
-    });
+    const { dirtyFields } = useFormState({control});
 
 
 
